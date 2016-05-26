@@ -4,9 +4,15 @@
       <h1>Dashboard</h1>
     </div>
 
+    <section>
+      <h3>Create a new group</h3>
+      <input type="text" placeholder="Group Name" id="groupName"/>
+      <input type="submit" value="Create" id="submitGroupCreate"/>
+    </section>
+    <br>
     <ul class="list-group">
-      {{#each items}}
-        <li class="list-group-item">{{ name }} <span class="label label-default">{{ rating }}</span></li>
+      {{#each groups}}
+        <li class="list-group-item">{{ name }} - Owned by {{owner.emails.[0].address}}</li>
       {{/each}}
     </ul>
 
