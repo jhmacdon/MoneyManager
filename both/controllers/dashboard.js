@@ -14,7 +14,7 @@ DashboardController = AppController.extend({
 
 GroupController = AppController.extend({
   waitOn: function() {
-    console.log("params are "+this.params)
+    //console.log("params are "+this.params)
     return this.subscribe('groups');
   },
   onAfterAction: function () {
