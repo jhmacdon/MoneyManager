@@ -4,10 +4,21 @@ DashboardController = AppController.extend({
     return this.subscribe('groups');
   },
   data: {
-    groups: Groups.find({})
+    groups: Groups.find({}),
+
   },
   onAfterAction: function () {
     Meta.setTitle('Dashboard');
+  }
+});
+
+GroupController = AppController.extend({
+  waitOn: function() {
+    console.log("params are "+this.params)
+    return this.subscribe('groups');
+  },
+  onAfterAction: function () {
+    Meta.setTitle('Group');
   }
 });
 

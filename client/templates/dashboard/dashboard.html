@@ -10,11 +10,24 @@
       <input type="submit" value="Create" id="submitGroupCreate"/>
     </section>
     <br>
+    Groups You Own:<br>
+    <ul class="list-group">
+      {{#each owned}}
+        <li class="list-group-item collapsible-toggle" data-toggle="collapse" data-target="#{{_id}}">
+          <a href="/group/{{_id}}">{{ name }} - {{size users}}</a>
+        </li>
+
+        <div id="{{_id}}" class="collapse collapse-group-control-panel">More options here</div>
+      {{/each}}
+    </ul>
+    <hr>
+
     <ul class="list-group">
       {{#each groups}}
         <li class="list-group-item">{{ name }} - Owned by {{owner.emails.[0].address}}</li>
       {{/each}}
     </ul>
+    <hr>
 
   </div>
 </template>
