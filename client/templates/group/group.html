@@ -1,10 +1,49 @@
 <template name="group">
   <div class="template-home">
     <div class="page-header">
-      <h1>{{groupId}}</h1>
+      <h1>{{groupName}}</h1>
     </div>
     <p>
-      Add user to this group: <input type="input" id="addUser"/> <input type="button" value="Add User"/>
+      <input type="button" onclick="Router.go('/{{groupId}}/add')" value="Add Users"/>
+    </p>
+
+    <p>
+      Current users in this group:
+      <ul>
+      {{#each userInGroup}}
+        <li>{{profile.name}}</li>
+      {{/each}}
+      </ul>
+
+      Add new record:
+      <form id="newRecord">
+        <select name="user1" form="newRecord">
+          {{#each userInGroup}}
+            <option value="{{_id}}">{{profile.name}}</option>
+          {{/each}}
+        </select>
+        <select name="type" form="newRecord">
+          <option value=owes>Owes</option>
+          <option value=paid>Paid</option>
+        </select>
+        <select name="user2" form="newRecord">
+          {{#each userInGroup}}
+            <option value="{{_id}}">{{profile.name}}</option>
+          {{/each}}
+        </select>
+        $<input type=text name="amount"/> for <input type=text name="reason"/>
+        <input type="submit" value="Add Record"/>
+      </form>
+
+      Current Balances:<br>
+      {{#each balances}}
+        {{user1.profile.name}} currently owes {{user2.profile.name}} ${{amount}}<br>
+      {{/each}}<br>
+
+      Current Records:<br>
+      {{#each records}}
+      {{user1.profile.name}} {{type}} {{user2.profile.name}} ${{amount}} for {{reason}}<br>
+      {{/each}}
     </p>
   </div>
 </template>

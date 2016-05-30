@@ -9,7 +9,7 @@ Template.dashboard.events({
       Groups.insert({
         name:$("#groupName").val(),
         owner:Meteor.user(),
-        users:[Meteor.user().userId]
+        users:[Meteor.user()]
       })
     } else {
       alert("No group name entered!")
@@ -31,6 +31,5 @@ Template.dashboard.helpers({
     } catch(e) {
       return 0
     }
-
   }
 })
