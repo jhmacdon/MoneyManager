@@ -12,6 +12,11 @@ Router.route('/group/:id', {
   controller: 'GroupController'
 })
 
+Router.route("/:id/add", {
+  name:"addUser",
+  controller:"GroupController"
+})
+
 Router.plugin('ensureSignedIn', {
   only: ['dashboard']
 });
