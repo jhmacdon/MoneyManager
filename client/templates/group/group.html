@@ -42,7 +42,7 @@
 
       Current Records:<br>
       {{#each records}}
-      {{user1.profile.name}} {{type}} {{user2.profile.name}} ${{amount}} for {{reason}}<br>
+      <div class="recordItem">{{user1.profile.name}} {{type}} {{user2.profile.name}} ${{amount}} for {{reason}} <span style="display:none" class="moveToTrash">X</span></div><br>
       {{/each}}
     </p>
   </div>

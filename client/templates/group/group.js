@@ -1,6 +1,5 @@
 Template.group.rendered = function(){
   groups = Groups.find({_id:Router.current().params.id}).fetch();
-  console.log(Records.find({}).fetch())
 }
 
 Template.group.helpers({
@@ -73,16 +72,34 @@ Template.group.events({
     e.preventDefault()
     var data = {};
     $("#newRecord").serializeArray().map(function(x){data[x.name] = x.value;});
+    if(data.amount == ""){
+      alert("Please enter an amount!")
+      return;
+    }
     if(Number(data.amount) != data.amount){
       alert(data.amount + " is not a valid number. :(")
+      return;
+    }
+    if(data.user1 == data.user2){
+      alert("A user cannot owe/pay themselves money!")
       return;
     }
     data.amount = Number(data.amount)
     data.user1 = Meteor.users.findOne({_id:data.user1})
     data.user2 = Meteor.users.findOne({_id:data.user2})
+
     data.date = Math.floor(Date.now() / 1000)
     data['group'] = Router.current().params.id
     Records.insert(data)
-
+    $("#newRecord")[0].reset()
+  },
+  'mouseenter .recordItem':function(e){
+    $(e.currentTarget).children(".moveToTrash").show()
+  },
+  'mouseleave .recordItem':function(e){
+    $(e.currentTarget).children(".moveToTrash").hide()
+  },
+  'click .moveToTrash':function(e){
+    alert("Functionality not yet available. Notes: http://goo.gl/pJPlvI")
   }
 })

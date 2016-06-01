@@ -1,0 +1,21 @@
+.recordItem{
+  display:inline-block;
+  width:100%;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  padding-left: 5px;
+  transition: 0.4s;
+}
+
+.recordItem:hover{
+  background-color: #EEEEEE;
+}
+
+.moveToTrash{
+  cursor:pointer;
+  transition: 0.5s;
+}
+
+.moveToTrash:hover{
+  color:#AAAAAA;
+}
