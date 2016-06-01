@@ -24,7 +24,7 @@
 
     <ul class="list-group">
       {{#each groups}}
-        <li class="list-group-item">{{ name }} - Owned by {{owner.emails.[0].address}}</li>
+        <li class="list-group-item"><a href="/group/{{_id}}">{{ name }} - Owned by {{owner.emails.[0].address}}</a></li>
       {{/each}}
     </ul>
     <hr>

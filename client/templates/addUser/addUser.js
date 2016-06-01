@@ -24,9 +24,20 @@ Template.addUser.events({
   },
   'click .addUser':function(e){
     id = $(e.currentTarget).attr("id")
+    user = Meteor.users.findOne({_id:id})
+    userObj = {}
+
+    userObj._id = user._id
+    userObj.profile = user.profile
+    userObj.emails = user.emails
+    user = userObj
     group = Groups.findOne({_id:Router.current().params.id})
-    if(group.users.indexOf(id) == -1){
-      group.users.push(Meteor.users.findOne({_id:id}))
+    duplicate = false;
+    $.each(group.users, function(k, u){
+      if(u._id == user._id) duplicate = true
+    })
+    if(!duplicate){
+      group.users.push(user)
       Groups.update({_id:group._id}, {$set:{users:group.users}})
       console.log(Groups.findOne({_id:Router.current().params.id}))
     } else {
