@@ -85,11 +85,11 @@ Router.route('/api/:id/balances', function () {
       var amounts = amount.toString().split(".")
       var cents = ""
       var dollars = amounts[0] + " dollars"
-      if(amount.length > 1){
+      if(amount.length > 1 && Number(amounts[1]) > 0){
         cents = " and " + amounts[1] + " cents "
       }
 
-      result += value.user1.profile.name + " owes " + value.user2.profile.name + " " + dollars + " dollars " + cents + ". "
+      result += value.user1.profile.name + " owes " + value.user2.profile.name + " " + dollars + cents + ". "
 
     }
   }
