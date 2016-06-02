@@ -80,8 +80,16 @@ Router.route('/api/:id/balances', function () {
   for(var balance in data){
     if(typeof data[balance] !== 'function'){
       value = data[balance]
+      var amount = parseFloat(Math.round(value.amount * 100) / 100).toFixed(2)
 
-      result += value.user1.profile.name + " owes " + value.user2.profile.name + " " + value.amount + ". "
+      var amounts = amount.toString().split(".")
+      var cents = ""
+      var dollars = amounts[0] + " dollars"
+      if(amount.length > 1){
+        cents = " and " + amounts[1] + " cents "
+      }
+
+      result += value.user1.profile.name + " owes " + value.user2.profile.name + " " + dollars + " dollars " + cents + ". "
 
     }
   }
