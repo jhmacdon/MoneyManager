@@ -1,0 +1,33 @@
+{
+	"intents": [{
+		"intent": "Transact",
+		"slots": [{
+			"name": "User",
+			"type": "LIST_OF_NAMES"
+		}, {
+			"name": "UserSecond",
+			"type": "LIST_OF_NAMES"
+		},{
+            "name": "Transaction", 
+            "type": "List_Of_Transaction"
+        }, {
+          	"name": "Dollars",
+          	"type": "AMAZON.NUMBER"
+        }, {
+          	"name": "Cents",
+          	"type": "AMAZON.NUMBER"
+        }, {
+          	"name": "Memo",
+            "type": "MEMO_TYPES"
+        }]
+    }, {
+        "intent": "Verify",
+        "slots":[{
+            "name": "words",
+			"type": "LIST_OF_NAMES"
+        }]
+    }, {
+        "intent": "Balance",
+        "slots":[]
+    }]
+}
