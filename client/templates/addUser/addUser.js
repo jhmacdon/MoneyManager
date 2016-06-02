@@ -32,6 +32,7 @@ Template.addUser.events({
     userObj.emails = user.emails
     user = userObj
     group = Groups.findOne({_id:Router.current().params.id})
+    //
     duplicate = false;
     $.each(group.users, function(k, u){
       if(u._id == user._id) duplicate = true
