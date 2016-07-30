@@ -28,19 +28,19 @@ Template.group.helpers({
       if(record.type == "owes"){
         //user1 owes user2
         if(data[index]){
-          data[index].amount += Number(record.amount)
+          data[index].amount += Math.round(Number(record.amount) * 100) / 100
         } else {
           data[index] = {}
-          data[index].amount = Number(record.amount)
+          data[index].amount = Math.round(Number(record.amount) * 100) / 100
           data[index].user1 = record.user1
           data[index].user2 = record.user2
         }
       } else {
         if(data[index]){
-          data[index].amount -= Number(record.amount)
+          data[index].amount -= Math.round(Number(record.amount) * 100) / 100
         } else {
           data[index] = {}
-          data[index].amount = -Number(record.amount)
+          data[index].amount = -Math.round(Number(record.amount) * 100) / 100
           data[index].user1 = record.user1
           data[index].user2 = record.user2
         }
@@ -51,10 +51,10 @@ Template.group.helpers({
       user = key.split(":")
       if(data[user[1]+":"+user[0]]){
         if(data[user[1]+":"+user[0]].amount < value.amount){
-          data[key].amount -= Number(data[user[1]+":"+user[0]].amount)
+          data[key].amount -= Math.round((Number(data[user[1]+":"+user[0]].amount)*100) / 100)
           delete data[user[1]+":"+user[0]]
         } else if (data[user[1]+":"+user[0]].amount > value.amount) {
-          data[user[1]+":"+user[0]].amount -= Number(data[key])
+          data[user[1]+":"+user[0]].amount -= Math.round(Number(data[key]) * 100) / 100
           delete data[key]
         }
       }
